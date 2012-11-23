@@ -9,28 +9,12 @@ import java.util.Date;
  * 
  */
 public class Product {
-    private int id;
     private String producer;
     private String model;
     private Date dateOfIssue;
     private String color;
     private boolean notInStock;
     private float price;
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-	return id;
-    }
-
-    /**
-     * @param id
-     *            the id to set
-     */
-    public void setId(int id) {
-	this.id = id;
-    }
 
     /**
      * @return the producer
@@ -134,7 +118,6 @@ public class Product {
 	result = prime * result + ((color == null) ? 0 : color.hashCode());
 	result = prime * result
 		+ ((dateOfIssue == null) ? 0 : dateOfIssue.hashCode());
-	result = prime * result + id;
 	result = prime * result + ((model == null) ? 0 : model.hashCode());
 	result = prime * result + (notInStock ? 1231 : 1237);
 	result = prime * result + Float.floatToIntBits(price);
@@ -167,8 +150,6 @@ public class Product {
 		return false;
 	} else if (!dateOfIssue.equals(other.dateOfIssue))
 	    return false;
-	if (id != other.id)
-	    return false;
 	if (model == null) {
 	    if (other.model != null)
 		return false;
@@ -194,9 +175,7 @@ public class Product {
     @Override
     public String toString() {
 	StringBuilder builder = new StringBuilder();
-	builder.append("Product [id=");
-	builder.append(id);
-	builder.append(", producer=");
+	builder.append("Product [producer=");
 	builder.append(producer);
 	builder.append(", model=");
 	builder.append(model);
