@@ -1,19 +1,9 @@
 package com.epam.shop.parser;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
-
-import by.stepanov.sergey.dateconverter.DateConverter;
-
-import com.epam.shop.model.Category;
-import com.epam.shop.model.Product;
-import com.epam.shop.model.Subcategory;
 
 /**
  * This class provides SAX handler for products of shop
@@ -22,12 +12,6 @@ import com.epam.shop.model.Subcategory;
  * 
  */
 public class SaxAnalyzer extends SAnalyzer implements ContentHandler {
-    private Product product;
-    private Subcategory subcategory;
-    private Category category;
-    private String data;
-    private String element;
-    private List<Category> categoryList = new ArrayList<Category>();
 
     @Override
     public void startDocument() {
@@ -42,42 +26,13 @@ public class SaxAnalyzer extends SAnalyzer implements ContentHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) {
-	data = new String(ch, start, length);
-	if (Constants.producerTag.equals(element)) {
-	    product.setProducer(data);
-	}
-	if (Constants.modelTag.equals(element)) {
-	    product.setModel(data);
-	}
-	if (Constants.dateOfIssueTag.equals(element)) {
-	    Date dateOfIssue = DateConverter.convertToDateUtil(data,
-		    Constants.datePattern);
-	    product.setDateOfIssue(dateOfIssue);
-	}
-	if (Constants.colorTag.equals(element)) {
-	    product.setColor(data);
-	}
-	if (Constants.priceTag.equals(element)) {
-	    product.setPrice(Float.parseFloat(data));
-	}
-	if (Constants.notInStockTag.equals(element)) {
-	    product.setNotInStock(true);
-	}
+	String data = new String(ch, start, length);
+	characters(data);
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) {
-	element = qName;
-	if (Constants.categoryTag.equals(element)) {
-	    categoryList.add(category);
-	}
-	if (Constants.subcategoryTag.equals(element)) {
-	    category.getSubcategoryList().add(subcategory);
-	}
-	if (Constants.productTag.equals(element)) {
-	    subcategory.getProductList().add(product);
-	}
-	element = "";
+	endElement(qName);
     }
 
     @Override

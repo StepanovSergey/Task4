@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.shop.parser;
 
 import java.io.FileInputStream;
@@ -13,7 +10,6 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import com.epam.shop.model.Category;

@@ -19,13 +19,14 @@ import com.epam.shop.model.Category;
  */
 public class MySaxParser implements IParser {
     private static Logger logger = Logger.getLogger(MySaxParser.class);
+    private static final String SAX_PARSER_CLASS = "com.sun.org.apache.xerces.internal.parsers.SAXParser";
 
     @Override
     public List<Category> parse(String XMLName) {
 	List<Category> categoryList = new ArrayList<Category>();
 	try {
 	    XMLReader reader = XMLReaderFactory
-		    .createXMLReader("javax.xml.parsers.SAXParser");
+		    .createXMLReader(SAX_PARSER_CLASS);
 	    SaxAnalyzer analyzer = new SaxAnalyzer();
 	    reader.setContentHandler(analyzer);
 	    reader.parse(XMLName);

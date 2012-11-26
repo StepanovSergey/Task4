@@ -14,9 +14,9 @@ public interface IParser {
     /**
      * Parse XML file
      * 
-     * @param XMLName
+     * @param XML_PATH
      *            name of XML file to parse
      * @return list of categories in XML file
      */
-    List<Category> parse(String XMLName);
+    List<Category> parse(String XML_PATH);
 }

@@ -32,7 +32,7 @@ public class StaxAnalyzer extends SAnalyzer {
 		break;
 
 	    case XMLStreamConstants.CHARACTERS:
-		data(reader.getText());
+		characters(reader.getText());
 		break;
 
 	    case XMLStreamConstants.END_ELEMENT:

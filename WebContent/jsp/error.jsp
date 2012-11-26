@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Parsers Home</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css"></link>
+<title>Error!</title>
 </head>
 <body>
-<p>Please select parser:</p>
-<a href="/Task4/ParserServlet?parser=sax">SAX parser</a>
-<a href="/Task4/ParserServlet?parser=stax">STAX parser</a>
-<a href="/Task4/ParserServlet?parser=dom">DOM parser</a>
+<p class="error">Error! Please go to index page and select valid parser!</p>
+<a href="main.jsp">To index page</a>
 </body>
 </html>

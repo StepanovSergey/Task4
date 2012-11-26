@@ -7,14 +7,15 @@ package com.epam.shop.parser;
  * 
  */
 public class Constants {
-    public static final String categoryTag = "category";
-    public static final String subcategoryTag = "subcategory";
-    public static final String productTag = "product";
-    public static final String producerTag = "producer";
-    public static final String modelTag = "model";
-    public static final String dateOfIssueTag = "date_of_issue";
-    public static final String priceTag = "price";
-    public static final String colorTag = "color";
-    public static final String notInStockTag = "not_in_stock";
-    public static final String datePattern = "dd-MM-yyyy";
+    public static final String CATEGORY_TAG = "category";
+    public static final String SUBCATEGORY_TAG = "subcategory";
+    public static final String PRODUCT_TAG = "product";
+    public static final String PRODUCER_TAG = "producer";
+    public static final String MODEL_TAG = "model";
+    public static final String DATE_OF_ISSUE_TAG = "date_of_issue";
+    public static final String PRICE_TAG = "price";
+    public static final String COLOR_TAG = "color";
+    public static final String NOT_IN_STOCK_TAG = "not_in_stock";
+    public static final String DATE_PATTERN = "dd-MM-yyyy";
+    public static final String NAME_ATTRIBUTE = "name";
 }

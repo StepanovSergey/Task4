@@ -34,15 +34,15 @@ public class SAnalyzer {
      */
     public void startElement(String tagName, String attribute) {
 	element = tagName;
-	if (Constants.categoryTag.equals(element)) {
+	if (Constants.CATEGORY_TAG.equals(element)) {
 	    category = new Category();
 	    category.setName(attribute);
 	}
-	if (Constants.subcategoryTag.equals(element)) {
+	if (Constants.SUBCATEGORY_TAG.equals(element)) {
 	    subcategory = new Subcategory();
 	    subcategory.setName(attribute);
 	}
-	if (Constants.productTag.equals(element)) {
+	if (Constants.PRODUCT_TAG.equals(element)) {
 	    product = new Product();
 	}
     }
@@ -53,27 +53,24 @@ public class SAnalyzer {
      * @param dataInTag
      *            data inside tag
      */
-    public void data(String dataInTag) {
+    public void characters(String dataInTag) {
 	data = dataInTag;
-	if (Constants.producerTag.equals(element)) {
+	if (Constants.PRODUCER_TAG.equals(element)) {
 	    product.setProducer(data);
 	}
-	if (Constants.modelTag.equals(element)) {
+	if (Constants.MODEL_TAG.equals(element)) {
 	    product.setModel(data);
 	}
-	if (Constants.dateOfIssueTag.equals(element)) {
+	if (Constants.DATE_OF_ISSUE_TAG.equals(element)) {
 	    Date dateOfIssue = DateConverter.convertToDateUtil(data,
-		    Constants.datePattern);
+		    Constants.DATE_PATTERN);
 	    product.setDateOfIssue(dateOfIssue);
 	}
-	if (Constants.colorTag.equals(element)) {
+	if (Constants.COLOR_TAG.equals(element)) {
 	    product.setColor(data);
 	}
-	if (Constants.priceTag.equals(element)) {
+	if (Constants.PRICE_TAG.equals(element)) {
 	    product.setPrice(Float.parseFloat(data));
-	}
-	if (Constants.notInStockTag.equals(element)) {
-	    product.setNotInStock(true);
 	}
     }
 
@@ -85,14 +82,17 @@ public class SAnalyzer {
      */
     public void endElement(String tagName) {
 	element = tagName;
-	if (Constants.categoryTag.equals(element)) {
+	if (Constants.CATEGORY_TAG.equals(element)) {
 	    categoryList.add(category);
 	}
-	if (Constants.subcategoryTag.equals(element)) {
+	if (Constants.SUBCATEGORY_TAG.equals(element)) {
 	    category.getSubcategoryList().add(subcategory);
 	}
-	if (Constants.productTag.equals(element)) {
+	if (Constants.PRODUCT_TAG.equals(element)) {
 	    subcategory.getProductList().add(product);
+	}
+	if (Constants.NOT_IN_STOCK_TAG.equals(element)) {
+	    product.setNotInStock(true);
 	}
 	element = "";
     }

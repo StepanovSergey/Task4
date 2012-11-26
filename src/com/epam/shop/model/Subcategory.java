@@ -1,5 +1,6 @@
 package com.epam.shop.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public class Subcategory {
     private String name;
-    private List<Product> productList;
+    private List<Product> productList = new ArrayList<Product>();
 
     /**
      * @return the name
