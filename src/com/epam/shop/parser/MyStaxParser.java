@@ -3,22 +3,24 @@ package com.epam.shop.parser;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import com.epam.shop.model.Category;
 
 /**
- * @author Sergey
+ * This class provides STAX parser
+ * 
+ * @author Siarhei_Stsiapanau
  * 
  */
-public class MyStaxParser implements IParser {
+public final class MyStaxParser implements IParser {
     private static Logger logger = Logger.getLogger(MyStaxParser.class);
 
     /*
@@ -28,7 +30,7 @@ public class MyStaxParser implements IParser {
      */
     @Override
     public List<Category> parse(String XMLName) {
-	List<Category> categoryList = new ArrayList<Category>();
+	List<Category> categoryList = null;
 	InputStream input;
 	try {
 	    input = new FileInputStream(XMLName);
@@ -37,8 +39,9 @@ public class MyStaxParser implements IParser {
 	    StaxAnalyzer staxAnalyzer = new StaxAnalyzer();
 	    categoryList = staxAnalyzer.process(reader);
 	} catch (FileNotFoundException | XMLStreamException e) {
-	    //if (logger.getLevel().equals(Level.ERROR))
+	    if (logger.isEnabledFor(Level.ERROR)) {
 		logger.error(e.getMessage(), e);
+	    }
 	}
 	return categoryList;
     }

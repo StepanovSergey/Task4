@@ -17,7 +17,7 @@ import com.epam.shop.parser.MyStaxParser;
  * @author Siarhei_Stsiapanau
  * 
  */
-public class RequestHelper {
+public final class RequestHelper {
     private static RequestHelper requestHelper;
     public static final String PARSER_PARAMETER = "parser";
     public static final String SAX_PARSER = "sax";
@@ -58,6 +58,9 @@ public class RequestHelper {
 	    MyDomParser domParser = new MyDomParser();
 	    categoryList = domParser.parse(XMLPath);
 	} else {
+	    return ERROR_PAGE;
+	}
+	if (categoryList == null) {
 	    return ERROR_PAGE;
 	}
 	request.getSession().setAttribute("categoryList", categoryList);

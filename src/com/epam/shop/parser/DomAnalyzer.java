@@ -20,7 +20,7 @@ import com.epam.shop.model.Subcategory;
  * @author Siarhei_Stsiapanau
  * 
  */
-public class DomAnalyzer {
+public final class DomAnalyzer {
     private Product product;
     private Subcategory subcategory;
     private Category category;

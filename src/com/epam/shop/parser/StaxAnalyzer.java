@@ -9,10 +9,12 @@ import javax.xml.stream.XMLStreamReader;
 import com.epam.shop.model.Category;
 
 /**
- * @author Sergey
+ * This class provides analyzer for STAX parser
+ * 
+ * @author Siarhei_Stsiapanau
  * 
  */
-public class StaxAnalyzer extends SAnalyzer {
+public final class StaxAnalyzer extends SAnalyzer {
     /**
      * STAX Parser XML analyzer
      * 

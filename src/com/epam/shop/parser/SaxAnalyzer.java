@@ -11,7 +11,7 @@ import org.xml.sax.SAXException;
  * @author Siarhei_Stsiapanau
  * 
  */
-public class SaxAnalyzer extends SAnalyzer implements ContentHandler {
+public final class SaxAnalyzer extends SAnalyzer implements ContentHandler {
 
     @Override
     public void startDocument() {

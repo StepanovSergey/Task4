@@ -13,7 +13,7 @@ import com.epam.shop.model.Subcategory;
 /**
  * This is common class for SAX and STAX analyzers.
  * 
- * @author Sergey
+ * @author Siarhei_Stsiapanau
  * 
  */
 public class SAnalyzer {

@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -21,7 +22,7 @@ import com.epam.shop.model.Category;
  * @author Siarhei_Stsiapanau
  * 
  */
-public class MyDomParser implements IParser {
+public final class MyDomParser implements IParser {
     private static Logger logger = Logger.getLogger(MyDomParser.class);
 
     @Override
@@ -37,7 +38,9 @@ public class MyDomParser implements IParser {
 	    DomAnalyzer domAnalyzer = new DomAnalyzer();
 	    categoryList = domAnalyzer.listBuilder(root);
 	} catch (ParserConfigurationException | SAXException | IOException e) {
-	    logger.error(e.getMessage(), e);
+	    if (logger.isEnabledFor(Level.ERROR)) {
+		logger.error(e.getMessage(), e);
+	    }
 	}
 	return categoryList;
     }
