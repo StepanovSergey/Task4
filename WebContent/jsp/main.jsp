@@ -7,9 +7,9 @@
 <title>Parsers Home</title>
 </head>
 <body>
-<p>Please select parser:</p>
-<a href="/Task4/ParserServlet?parser=sax">SAX parser</a>
-<a href="/Task4/ParserServlet?parser=stax">STAX parser</a>
-<a href="/Task4/ParserServlet?parser=dom">DOM parser</a>
+	<p>Please select parser:</p>
+	<a href="/Task4/ParserServlet?command=sax_parser">SAX parser</a>
+	<a href="/Task4/ParserServlet?command=stax_parser">STAX parser</a>
+	<a href="/Task4/ParserServlet?command=dom_parser">DOM parser</a>
 </body>
 </html>

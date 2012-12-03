@@ -1,14 +1,19 @@
 package com.epam.shop.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.epam.shop.model.Category;
-import com.epam.shop.parser.MyDomParser;
-import com.epam.shop.parser.MySaxParser;
-import com.epam.shop.parser.MyStaxParser;
+import org.apache.log4j.Logger;
+
+import com.epam.shop.command.Constants;
+import com.epam.shop.command.DomParserCommand;
+import com.epam.shop.command.ICommand;
+import com.epam.shop.command.NoCommand;
+import com.epam.shop.command.SaxParserCommand;
+import com.epam.shop.command.StaxParserCommand;
+import com.epam.shop.command.ToMainPageCommand;
 
 /**
  * This class is servlet requestHelper. It's parse XML file with selected on
@@ -18,17 +23,16 @@ import com.epam.shop.parser.MyStaxParser;
  * 
  */
 public final class RequestHelper {
+    private static Logger logger = Logger.getLogger(RequestHelper.class);
     private static RequestHelper requestHelper;
-    public static final String PARSER_PARAMETER = "parser";
-    public static final String SAX_PARSER = "sax";
-    public static final String STAX_PARSER = "stax";
-    public static final String DOM_PARSER = "dom";
-    public static final String XML_NAME = "WEB-INF\\classes\\products.xml";
-    public static final String MAIN_PAGE = "jsp/main.jsp";
-    public static final String PRODUCTS_PAGE = "jsp/products.jsp";
-    public static final String ERROR_PAGE = "jsp/error.jsp";
+    private static Map<String, ICommand> commands = new HashMap<>();
 
     private RequestHelper() {
+	commands.put(Constants.SAX_PARSER_COMMAND, new SaxParserCommand());
+	commands.put(Constants.STAX_PARSER_COMMAND, new StaxParserCommand());
+	commands.put(Constants.DOM_PARSER_COMMAND, new DomParserCommand());
+	commands.put(Constants.TO_MAIN_PAGE_COMMAND, new ToMainPageCommand());
+	commands.put(Constants.NO_COMMAND, new NoCommand());
     }
 
     /**
@@ -42,28 +46,19 @@ public final class RequestHelper {
     }
 
     public String execute(HttpServletRequest request) {
-	String parser = request.getParameter(PARSER_PARAMETER);
-	if (parser == null) {
-	    return MAIN_PAGE;
+	String commandString = request
+		.getParameter(Constants.COMMAND_PARAMETER);
+	if (logger.isDebugEnabled()){
+	    logger.debug("Current command: " + commandString);
 	}
-	List<Category> categoryList = new ArrayList<Category>();
-	String XMLPath = request.getServletContext().getRealPath(XML_NAME);
-	if (SAX_PARSER.equals(parser)) {
-	    MySaxParser saxParser = new MySaxParser();
-	    categoryList = saxParser.parse(XMLPath);
-	} else if (STAX_PARSER.equals(parser)) {
-	    MyStaxParser saxParser = new MyStaxParser();
-	    categoryList = saxParser.parse(XMLPath);
-	} else if (DOM_PARSER.equals(parser)) {
-	    MyDomParser domParser = new MyDomParser();
-	    categoryList = domParser.parse(XMLPath);
-	} else {
-	    return ERROR_PAGE;
+	ICommand command = commands.get(commandString);
+	if (command == null){
+	    command = commands.get(Constants.NO_COMMAND);
 	}
-	if (categoryList == null) {
-	    return ERROR_PAGE;
+	String page = command.execute(request);
+	if (logger.isDebugEnabled()){
+	    logger.debug("Page to go: " + page);
 	}
-	request.getSession().setAttribute("categoryList", categoryList);
-	return PRODUCTS_PAGE;
+	return page;
     }
 }

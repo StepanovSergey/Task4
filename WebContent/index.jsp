@@ -8,6 +8,6 @@
 <title>Parsers Home</title>
 </head>
 <body>
-<c:redirect url="/ParserServlet" />
+<c:redirect url="/ParserServlet?command=main_page" />
 </body>
 </html>
