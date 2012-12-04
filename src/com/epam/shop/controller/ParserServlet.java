@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.epam.shop.command.CommandFactory;
+
 /**
  * This class provides servlet description
  * 
@@ -34,7 +36,7 @@ public class ParserServlet extends HttpServlet {
     private void process(HttpServletRequest request,
 	    HttpServletResponse response) throws ServletException, IOException {
 	response.setContentType("text/html");
-	String page = RequestHelper.getRequestHelper().execute(request);
+	String page = CommandFactory.getCommand(request).execute(request);
 	response.sendRedirect(page);
     }
 }
