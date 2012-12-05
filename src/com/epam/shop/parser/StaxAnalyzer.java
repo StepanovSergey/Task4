@@ -14,7 +14,7 @@ import com.epam.shop.model.Category;
  * @author Siarhei_Stsiapanau
  * 
  */
-public final class StaxAnalyzer extends SAnalyzer {
+public final class StaxAnalyzer extends AAnalyzer {
     /**
      * STAX Parser XML analyzer
      * 

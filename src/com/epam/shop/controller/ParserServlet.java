@@ -15,7 +15,7 @@ import com.epam.shop.command.CommandFactory;
  * @author Siarhei_Stsiapanau
  * 
  */
-public class ParserServlet extends HttpServlet {
+public final class ParserServlet extends HttpServlet {
     /**
      * Generated Serial ID
      */

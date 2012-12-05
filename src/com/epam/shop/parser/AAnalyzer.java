@@ -9,6 +9,7 @@ import by.stepanov.sergey.dateconverter.DateConverter;
 import com.epam.shop.model.Category;
 import com.epam.shop.model.Product;
 import com.epam.shop.model.Subcategory;
+import com.epam.shop.resource.Constants;
 
 /**
  * This is common class for SAX and STAX analyzers.
@@ -16,7 +17,7 @@ import com.epam.shop.model.Subcategory;
  * @author Siarhei_Stsiapanau
  * 
  */
-public class SAnalyzer {
+public abstract class AAnalyzer {
     private Product product;
     private Subcategory subcategory;
     private Category category;

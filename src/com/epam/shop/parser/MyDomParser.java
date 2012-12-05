@@ -23,7 +23,7 @@ import com.epam.shop.model.Category;
  * 
  */
 public final class MyDomParser implements IParser {
-    private static Logger logger = Logger.getLogger(MyDomParser.class);
+    private static final Logger logger = Logger.getLogger(MyDomParser.class);
 
     @Override
     public List<Category> parse(String XMLName) {

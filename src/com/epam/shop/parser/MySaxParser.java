@@ -18,7 +18,11 @@ import com.epam.shop.model.Category;
  * 
  */
 public final class MySaxParser implements IParser {
-    private static Logger logger = Logger.getLogger(MySaxParser.class);
+    private static final Logger logger = Logger.getLogger(MySaxParser.class);
+    private static final MySaxParser instance = new MySaxParser();
+
+    private MySaxParser() {
+    }
 
     @Override
     public List<Category> parse(String XMLName) {
@@ -35,5 +39,12 @@ public final class MySaxParser implements IParser {
 	    }
 	}
 	return categoryList;
+    }
+
+    /**
+     * @return the saxParser
+     */
+    public static MySaxParser getInstance() {
+        return instance;
     }
 }

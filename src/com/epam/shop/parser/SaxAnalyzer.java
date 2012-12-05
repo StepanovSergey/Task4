@@ -11,7 +11,7 @@ import org.xml.sax.SAXException;
  * @author Siarhei_Stsiapanau
  * 
  */
-public final class SaxAnalyzer extends SAnalyzer implements ContentHandler {
+public final class SaxAnalyzer extends AAnalyzer implements ContentHandler {
 
     @Override
     public void startDocument() {
@@ -21,7 +21,7 @@ public final class SaxAnalyzer extends SAnalyzer implements ContentHandler {
     @Override
     public void startElement(String uri, String localName, String qName,
 	    Attributes attributes) {
-	startElement(qName, attributes.getValue(0));
+	startElement(localName, attributes.getValue(0));
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class SaxAnalyzer extends SAnalyzer implements ContentHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) {
-	endElement(qName);
+	endElement(localName);
     }
 
     @Override

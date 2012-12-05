@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.epam.shop.resource.Constants;
+
 /**
  * This class provides command factory
  * 
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 public final class CommandFactory {
     private static final CommandFactory instance = new CommandFactory();
     private static Map<String, ICommand> commands;
+    private static String XML_REAL_PATH;
 
     private CommandFactory() {
 	commands = new HashMap<String, ICommand>();
@@ -32,12 +35,23 @@ public final class CommandFactory {
     }
 
     public static ICommand getCommand(HttpServletRequest request) {
+	if (XML_REAL_PATH == null) {
+	    XML_REAL_PATH = request.getServletContext().getRealPath(
+		    Constants.LOCAL_PATH_TO_XML);
+	}
 	String commandName = request.getParameter(Constants.COMMAND_PARAMETER);
 	ICommand command = commands.get(commandName);
 	if (command == null) {
 	    command = commands.get(Constants.NO_COMMAND);
 	}
 	return command;
+    }
+
+    /**
+     * @return the XML_REAL_PATH
+     */
+    public static String getXmlRealPath() {
+        return XML_REAL_PATH;
     }
 
 }

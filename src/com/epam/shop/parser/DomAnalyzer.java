@@ -13,6 +13,7 @@ import by.stepanov.sergey.dateconverter.DateConverter;
 import com.epam.shop.model.Category;
 import com.epam.shop.model.Product;
 import com.epam.shop.model.Subcategory;
+import com.epam.shop.resource.Constants;
 
 /**
  * This class provides DOM parser analyzer
@@ -29,7 +30,8 @@ public final class DomAnalyzer {
     public List<Category> listBuilder(Element root) {
 	NodeList categoryNodes = root
 		.getElementsByTagName(Constants.CATEGORY_TAG);
-	for (int i = 0; i < categoryNodes.getLength(); i++) {
+	int categoryNodesLength = categoryNodes.getLength();
+	for (int i = 0; i < categoryNodesLength; i++) {
 	    category = new Category();
 	    Element categoryElement = (Element) categoryNodes.item(i);
 	    category.setName(categoryElement
@@ -37,7 +39,8 @@ public final class DomAnalyzer {
 
 	    NodeList subcategoryNodes = categoryElement
 		    .getElementsByTagName(Constants.SUBCATEGORY_TAG);
-	    for (int j = 0; j < subcategoryNodes.getLength(); j++) {
+	    int subcategoryNodesLength = subcategoryNodes.getLength();
+	    for (int j = 0; j < subcategoryNodesLength; j++) {
 		subcategory = new Subcategory();
 		Element subcategoryElement = (Element) subcategoryNodes.item(j);
 		subcategory.setName(subcategoryElement
@@ -45,7 +48,8 @@ public final class DomAnalyzer {
 
 		NodeList productNodes = subcategoryElement
 			.getElementsByTagName(Constants.PRODUCT_TAG);
-		for (int k = 0; k < productNodes.getLength(); k++) {
+		int productNodesLength = productNodes.getLength();
+		for (int k = 0; k < productNodesLength; k++) {
 		    product = new Product();
 		    Element productElement = (Element) productNodes.item(k);
 		    product.setProducer(getChildElementValue(productElement,

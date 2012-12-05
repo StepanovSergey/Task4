@@ -2,12 +2,14 @@ package com.epam.shop.command;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.epam.shop.resource.Constants;
+
 /**
  * This class provides command when there is no command in request
  * @author Siarhei_Stsiapanau
  *
  */
-public class NoCommand implements ICommand {
+public final class NoCommand implements ICommand {
 
     /* (non-Javadoc)
      * @see com.epam.shop.command.ICommand#execute(javax.servlet.http.HttpServletRequest)

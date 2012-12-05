@@ -21,7 +21,11 @@ import com.epam.shop.model.Category;
  * 
  */
 public final class MyStaxParser implements IParser {
-    private static Logger logger = Logger.getLogger(MyStaxParser.class);
+    private static final Logger logger = Logger.getLogger(MyStaxParser.class);
+    private static final MyStaxParser instance = new MyStaxParser();
+
+    private MyStaxParser() {
+    }
 
     /*
      * (non-Javadoc)
@@ -44,5 +48,12 @@ public final class MyStaxParser implements IParser {
 	    }
 	}
 	return categoryList;
+    }
+
+    /**
+     * @return the instance
+     */
+    public static MyStaxParser getInstance() {
+	return instance;
     }
 }

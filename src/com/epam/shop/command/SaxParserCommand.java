@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.epam.shop.model.Category;
 import com.epam.shop.parser.MySaxParser;
+import com.epam.shop.resource.Constants;
 
 /**
  * This class provides SAX parser command
@@ -15,8 +16,9 @@ import com.epam.shop.parser.MySaxParser;
  * @author Siarhei_Stsiapanau
  * 
  */
-public class SaxParserCommand implements ICommand {
-    private static Logger logger = Logger.getLogger(SaxParserCommand.class);
+public final class SaxParserCommand implements ICommand {
+    private static final Logger logger = Logger
+	    .getLogger(SaxParserCommand.class);
 
     /*
      * (non-Javadoc)
@@ -28,13 +30,12 @@ public class SaxParserCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest request) {
 	String page = Constants.ERROR_PAGE;
-	String realPathToXml = request.getServletContext().getRealPath(
-		Constants.LOCAL_PATH_TO_XML);
+	String realPathToXml = CommandFactory.getXmlRealPath();
 	List<Category> categoryList = null;
-	if (logger.isDebugEnabled()){
+	if (logger.isDebugEnabled()) {
 	    logger.debug("Processing SAX parser");
 	}
-	MySaxParser saxParser = new MySaxParser();
+	MySaxParser saxParser = MySaxParser.getInstance();
 	categoryList = saxParser.parse(realPathToXml);
 	if (categoryList == null) {
 	    if (logger.isDebugEnabled()) {
@@ -42,7 +43,8 @@ public class SaxParserCommand implements ICommand {
 	    }
 	    return page;
 	}
-	request.getSession().setAttribute(Constants.CATEGORY_LIST_ATTRIBUTE, categoryList);
+	request.getSession().setAttribute(Constants.CATEGORY_LIST_ATTRIBUTE,
+		categoryList);
 	page = Constants.PRODUCTS_PAGE;
 	return page;
     }

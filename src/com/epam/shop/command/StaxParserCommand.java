@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.epam.shop.model.Category;
 import com.epam.shop.parser.MyStaxParser;
+import com.epam.shop.resource.Constants;
 
 /**
  * This class provides STAX parser command
@@ -15,8 +16,9 @@ import com.epam.shop.parser.MyStaxParser;
  * @author Siarhei_Stsiapanau
  * 
  */
-public class StaxParserCommand implements ICommand {
-    private static Logger logger = Logger.getLogger(StaxParserCommand.class);
+public final class StaxParserCommand implements ICommand {
+    private static final Logger logger = Logger
+	    .getLogger(StaxParserCommand.class);
 
     /*
      * (non-Javadoc)
@@ -28,11 +30,10 @@ public class StaxParserCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest request) {
 	String page = Constants.ERROR_PAGE;
-	String realPathToXml = request.getServletContext().getRealPath(
-		Constants.LOCAL_PATH_TO_XML);
+	String realPathToXml = CommandFactory.getXmlRealPath();
 	List<Category> categoryList = null;
-	MyStaxParser saxParser = new MyStaxParser();
-	categoryList = saxParser.parse(realPathToXml);
+	MyStaxParser staxParser = MyStaxParser.getInstance();
+	categoryList = staxParser.parse(realPathToXml);
 	if (categoryList == null) {
 	    if (logger.isDebugEnabled()) {
 		logger.debug("List of categories is null");

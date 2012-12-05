@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.epam.shop.model.Category;
 import com.epam.shop.parser.MyDomParser;
+import com.epam.shop.resource.Constants;
 
 /**
  * This class provides DOM parser command
@@ -15,8 +16,8 @@ import com.epam.shop.parser.MyDomParser;
  * @author Siarhei_Stsiapanau
  * 
  */
-public class DomParserCommand implements ICommand {
-    private static Logger logger = Logger.getLogger(DomParserCommand.class);
+public final class DomParserCommand implements ICommand {
+    private static final Logger logger = Logger.getLogger(DomParserCommand.class);
 
     /*
      * (non-Javadoc)
@@ -26,8 +27,7 @@ public class DomParserCommand implements ICommand {
     @Override
     public String execute(HttpServletRequest request) {
 	String page = Constants.ERROR_PAGE;
-	String realPathToXml = request.getServletContext().getRealPath(
-		Constants.LOCAL_PATH_TO_XML);
+	String realPathToXml = CommandFactory.getXmlRealPath();
 	List<Category> categoryList = null;
 	MyDomParser domParser = new MyDomParser();
 	categoryList = domParser.parse(realPathToXml);
