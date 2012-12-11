@@ -10,7 +10,7 @@ import com.epam.shop.resource.Constants;
  * @author Siarhei_Stsiapanau
  * 
  */
-public final class ToMainPageCommand implements ICommand {
+final class ToMainPageCommand implements ICommand {
 
     @Override
     public String execute(HttpServletRequest request) {

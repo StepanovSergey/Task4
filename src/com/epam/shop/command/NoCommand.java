@@ -9,7 +9,7 @@ import com.epam.shop.resource.Constants;
  * @author Siarhei_Stsiapanau
  *
  */
-public final class NoCommand implements ICommand {
+final class NoCommand implements ICommand {
 
     /* (non-Javadoc)
      * @see com.epam.shop.command.ICommand#execute(javax.servlet.http.HttpServletRequest)

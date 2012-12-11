@@ -16,7 +16,7 @@ import com.epam.shop.resource.Constants;
  * @author Siarhei_Stsiapanau
  * 
  */
-public final class SaxParserCommand implements ICommand {
+final class SaxParserCommand implements ICommand {
     private static final Logger logger = Logger
 	    .getLogger(SaxParserCommand.class);
 

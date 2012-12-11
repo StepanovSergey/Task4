@@ -16,7 +16,7 @@ import com.epam.shop.resource.Constants;
  * @author Siarhei_Stsiapanau
  * 
  */
-public final class DomParserCommand implements ICommand {
+final class DomParserCommand implements ICommand {
     private static final Logger logger = Logger.getLogger(DomParserCommand.class);
 
     /*
@@ -29,7 +29,7 @@ public final class DomParserCommand implements ICommand {
 	String page = Constants.ERROR_PAGE;
 	String realPathToXml = CommandFactory.getXmlRealPath();
 	List<Category> categoryList = null;
-	MyDomParser domParser = new MyDomParser();
+	MyDomParser domParser = MyDomParser.getInstance();
 	categoryList = domParser.parse(realPathToXml);
 	if (categoryList == null) {
 	    if (logger.isDebugEnabled()) {

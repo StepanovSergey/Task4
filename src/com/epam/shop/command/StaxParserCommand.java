@@ -16,7 +16,7 @@ import com.epam.shop.resource.Constants;
  * @author Siarhei_Stsiapanau
  * 
  */
-public final class StaxParserCommand implements ICommand {
+final class StaxParserCommand implements ICommand {
     private static final Logger logger = Logger
 	    .getLogger(StaxParserCommand.class);
 

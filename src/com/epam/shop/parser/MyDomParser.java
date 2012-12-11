@@ -24,6 +24,7 @@ import com.epam.shop.model.Category;
  */
 public final class MyDomParser implements IParser {
     private static final Logger logger = Logger.getLogger(MyDomParser.class);
+    private static final MyDomParser instance = new MyDomParser();
 
     @Override
     public List<Category> parse(String XMLName) {
@@ -45,4 +46,10 @@ public final class MyDomParser implements IParser {
 	return categoryList;
     }
 
+    /**
+     * @return the instance
+     */
+    public static MyDomParser getInstance() {
+	return instance;
+    }
 }
